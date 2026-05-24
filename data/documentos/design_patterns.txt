@@ -1,0 +1,5 @@
+# Design Patterns (GoF)
+Criacionais: Singleton (única instância), Factory Method, Builder.
+Estruturais: Adapter (converte interface), Decorator (adiciona responsabilidades), Facade.
+Comportamentais: Observer (1-para-muitos, pub/sub), Strategy (algoritmos intercambiáveis), Command (undo/redo).
+SOLID: Single Responsibility, Open/Closed, Liskov, Interface Segregation, Dependency Inversion.

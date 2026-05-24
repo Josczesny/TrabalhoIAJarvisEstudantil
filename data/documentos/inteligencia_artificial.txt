@@ -1,0 +1,7 @@
+# Inteligência Artificial
+Aprendizado Supervisionado: pares (entrada, saída). Algoritmos: regressão, SVM, árvores, redes neurais.
+Não Supervisionado: sem rótulos. K-Means, PCA.
+Por Reforço: agente maximiza recompensa por tentativa e erro.
+Overfitting: decora treino. Solução: regularização, dropout, early stopping.
+Métricas: acurácia, precisão, recall, F1, ROC-AUC, MSE, MAE, R2.
+Transformers: atenção (Self-Attention). BERT bidirecional, GPT autoregressivo. RAG = LLM + busca.

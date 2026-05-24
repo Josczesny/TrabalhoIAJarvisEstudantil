@@ -1,0 +1,6 @@
+# Regressão Logística
+Algoritmo de CLASSIFICAÇÃO supervisionada que estima probabilidade de pertencer a uma classe.
+Usa função sigmoide: sigma(z) = 1 / (1 + e^-z), onde z = w.x + b.
+Treinado minimizando Binary Cross-Entropy: L = -[y*log(y_hat) + (1-y)*log(1-y_hat)].
+Regularização L1 (esparsidade) e L2 (penaliza pesos grandes).
+Usar quando: classificação binária, dados linearmente separáveis, precisa de probabilidade.

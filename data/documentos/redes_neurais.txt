@@ -1,0 +1,6 @@
+# Redes Neurais Artificiais
+Neurônio artificial: recebe entradas xi, multiplica por pesos, soma bias, passa por ativação.
+Funções de ativação: ReLU=max(0,x), Sigmoide, Softmax, Tanh.
+Arquitetura: entrada -> camadas ocultas -> saída.
+Backpropagation: forward pass, calcula loss, backward pass com regra da cadeia, atualiza pesos.
+Regularização: Dropout (desativa neurônios aleatoriamente), Batch Norm, Early Stopping.

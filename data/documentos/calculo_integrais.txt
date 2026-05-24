@@ -1,0 +1,6 @@
+# Cálculo II — Integrais
+Integral definida: area sob a curva. Teorema Fundamental: integral(a,b) f(x)dx = F(b)-F(a).
+Substituição (u-sub): u=g(x), du=g(x)dx. Exemplo: integral 2x*cos(x^2)dx = sen(x^2)+C.
+Integração por Partes: integral u dv = uv - integral v du. Regra LIATE.
+Frações Parciais: decompõe racionais em frações simples.
+Integrais impróprias: intervalo infinito ou descontinuidade. Aplicações: área, volume, arco.

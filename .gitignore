@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+jarvis_logs.log
+server.log
+server_out.log
+flask_err.txt
+flask_out.txt

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "titulo": "Estudar integrais para a prova",
+    "descricao": "Caps 5 e 6",
+    "prazo": "2026-05-26",
+    "concluida": false,
+    "prioridade": "alta"
+  },
+  {
+    "id": 2,
+    "titulo": "Ler artigo sobre transformers",
+    "descricao": "Attention is All You Need",
+    "prazo": "2026-05-28",
+    "concluida": false,
+    "prioridade": "media"
+  },
+  {
+    "id": 3,
+    "titulo": "Implementar RAG do JARVIS",
+    "descricao": "Trabalho prático",
+    "prazo": "2026-05-30",
+    "concluida": false,
+    "prioridade": "alta"
+  },
+  {
+    "id": 4,
+    "titulo": "Revisar anotações de BD",
+    "descricao": "Foco em normalização",
+    "prazo": "2026-05-27",
+    "concluida": false,
+    "prioridade": "media"
+  }
+]

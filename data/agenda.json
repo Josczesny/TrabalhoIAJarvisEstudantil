@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "titulo": "Aula de Inteligência Artificial",
+    "tipo": "aula",
+    "data": "2026-05-26",
+    "horario": "08:00",
+    "local": "Sala 101",
+    "descricao": "Tema: Redes Neurais"
+  },
+  {
+    "id": 2,
+    "titulo": "Aula de Banco de Dados",
+    "tipo": "aula",
+    "data": "2026-05-26",
+    "horario": "10:00",
+    "local": "Sala 203",
+    "descricao": "Tema: Transações"
+  },
+  {
+    "id": 3,
+    "titulo": "Prova de Cálculo II",
+    "tipo": "prova",
+    "data": "2026-05-27",
+    "horario": "14:00",
+    "local": "Sala 305",
+    "descricao": "Conteúdo: Integrais"
+  },
+  {
+    "id": 4,
+    "titulo": "Aula de Engenharia de Software",
+    "tipo": "aula",
+    "data": "2026-05-28",
+    "horario": "08:00",
+    "local": "Lab 2",
+    "descricao": "Tema: Design Patterns"
+  },
+  {
+    "id": 5,
+    "titulo": "Entrega do Trabalho de IA",
+    "tipo": "entrega",
+    "data": "2026-05-30",
+    "horario": "23:59",
+    "local": "Online",
+    "descricao": "JARVIS — Trabalho 2"
+  },
+  {
+    "id": 6,
+    "titulo": "Aula de Redes de Computadores",
+    "tipo": "aula",
+    "data": "2026-05-29",
+    "horario": "10:00",
+    "local": "Sala 110",
+    "descricao": "Tema: TCP/IP"
+  },
+  {
+    "id": 7,
+    "titulo": "Prova de Estrutura de Dados",
+    "tipo": "prova",
+    "data": "2026-06-02",
+    "horario": "08:00",
+    "local": "Sala 101",
+    "descricao": "Conteúdo: Árvores e Grafos"
+  }
+]

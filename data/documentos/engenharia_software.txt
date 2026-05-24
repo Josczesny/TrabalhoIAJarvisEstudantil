@@ -1,0 +1,6 @@
+# Engenharia de Software
+SDLC: Requisitos, Análise, Implementação, Testes, Implantação, Manutenção.
+Waterfall: sequencial, requisitos estáveis. Scrum: sprints 1-4 sem, PO/SM/Dev, backlog.
+Kanban: fluxo contínuo, limita WIP. Testes: unitário, integração, sistema, aceitação, regressão.
+Git: commit, branch, merge, pull request, rebase.
+Qualidade: SOLID, DRY, KISS. Code Review, Refatoração, Débito Técnico.

@@ -1,0 +1,6 @@
+# Embeddings em NLP
+Representações vetoriais densas de palavras/frases. Palavras similares ficam próximas no espaço.
+Word2Vec: Skip-gram (prediz vizinhos) ou CBOW (prediz palavra central).
+Sentence Transformers: baseados em BERT, geram embeddings para sentenças.
+Similaridade Coseno: cos(theta) = (A.B)/(|A||B|), varia de -1 a 1.
+RAG Pipeline: chunkar docs -> embeddings -> armazenar -> buscar por similaridade -> LLM gera resposta.

@@ -1,0 +1,6 @@
+# Redes de Computadores
+Modelo OSI 7 camadas: Física, Enlace, Rede, Transporte, Sessão, Apresentação, Aplicação.
+TCP: orientado a conexão (3-way handshake), garante entrega e ordem, controle de fluxo.
+UDP: sem conexão, rápido, sem garantias. Uso: DNS, streaming, jogos.
+IPv4: 32 bits. IPv6: 128 bits. CIDR: ex 192.168.1.0/24 = 256 endereços.
+HTTP (80/443), DNS (53), DHCP, SSH (22). Roteamento: RIP, OSPF (Dijkstra), BGP.

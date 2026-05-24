@@ -1,0 +1,6 @@
+# Banco de Dados Relacionais
+Modelo relacional: tabelas com linhas (tuplas) e colunas (atributos). Criado por Codd (1970).
+SQL: SELECT, INSERT, UPDATE, DELETE, JOIN.
+Chaves: Primária (PK) = identificador único; Estrangeira (FK) = referencia PK de outra tabela.
+Normalização: 1FN (atômico), 2FN (sem dep. parcial), 3FN (sem dep. transitiva), BCNF.
+ACID: Atomicidade, Consistência, Isolamento, Durabilidade. Índices: B-Tree, Hash.

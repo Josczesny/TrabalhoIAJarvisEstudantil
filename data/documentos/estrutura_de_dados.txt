@@ -1,0 +1,7 @@
+# Estruturas de Dados
+BST: filho esq < pai < filho dir. Busca O(h).
+Árvores balanceadas: AVL (rotações mantém |h_esq - h_dir| <= 1), Red-Black.
+Grafos: vértices V + arestas E. Dirigido, não-dirigido, ponderado.
+BFS (fila, menor caminho), DFS (pilha/recursão, detecta ciclos).
+Dijkstra: menor caminho pesos positivos. Kruskal/Prim: MST.
+Hash: O(1) médio. Complexidades: O(1) array, O(log n) busca binária, O(n log n) merge sort.
