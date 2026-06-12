@@ -1,22 +1,32 @@
 import json
+import datetime
 from pathlib import Path
 
-AGENDA_INICIAL = [
-    {'id': 1, 'titulo': 'Aula de Inteligência Artificial', 'tipo': 'aula', 'data': '2026-05-26', 'horario': '08:00', 'local': 'Sala 101', 'descricao': 'Tema: Redes Neurais'},
-    {'id': 2, 'titulo': 'Aula de Banco de Dados', 'tipo': 'aula', 'data': '2026-05-26', 'horario': '10:00', 'local': 'Sala 203', 'descricao': 'Tema: Transações'},
-    {'id': 3, 'titulo': 'Prova de Cálculo II', 'tipo': 'prova', 'data': '2026-05-27', 'horario': '14:00', 'local': 'Sala 305', 'descricao': 'Conteúdo: Integrais'},
-    {'id': 4, 'titulo': 'Aula de Engenharia de Software', 'tipo': 'aula', 'data': '2026-05-28', 'horario': '08:00', 'local': 'Lab 2', 'descricao': 'Tema: Design Patterns'},
-    {'id': 5, 'titulo': 'Entrega do Trabalho de IA', 'tipo': 'entrega', 'data': '2026-05-30', 'horario': '23:59', 'local': 'Online', 'descricao': 'JARVIS — Trabalho 2'},
-    {'id': 6, 'titulo': 'Aula de Redes de Computadores', 'tipo': 'aula', 'data': '2026-05-29', 'horario': '10:00', 'local': 'Sala 110', 'descricao': 'Tema: TCP/IP'},
-    {'id': 7, 'titulo': 'Prova de Estrutura de Dados', 'tipo': 'prova', 'data': '2026-06-02', 'horario': '08:00', 'local': 'Sala 101', 'descricao': 'Conteúdo: Árvores e Grafos'},
-]
 
-TAREFAS_INICIAL = [
-    {'id': 1, 'titulo': 'Estudar integrais para a prova', 'descricao': 'Caps 5 e 6', 'prazo': '2026-05-26', 'concluida': False, 'prioridade': 'alta'},
-    {'id': 2, 'titulo': 'Ler artigo sobre transformers', 'descricao': 'Attention is All You Need', 'prazo': '2026-05-28', 'concluida': False, 'prioridade': 'media'},
-    {'id': 3, 'titulo': 'Implementar RAG do JARVIS', 'descricao': 'Trabalho prático', 'prazo': '2026-05-30', 'concluida': False, 'prioridade': 'alta'},
-    {'id': 4, 'titulo': 'Revisar anotações de BD', 'descricao': 'Foco em normalização', 'prazo': '2026-05-27', 'concluida': False, 'prioridade': 'media'},
-]
+def _d(days: int) -> str:
+    """Return ISO date string relative to today."""
+    return str(datetime.date.today() + datetime.timedelta(days=days))
+
+
+def _agenda_inicial():
+    return [
+        {'id': 1, 'titulo': 'Aula de Inteligência Artificial', 'tipo': 'aula',     'data': _d(1),  'horario': '08:00', 'local': 'Sala 101',  'descricao': 'Tema: Redes Neurais'},
+        {'id': 2, 'titulo': 'Aula de Banco de Dados',          'tipo': 'aula',     'data': _d(1),  'horario': '10:00', 'local': 'Sala 203',  'descricao': 'Tema: Transações'},
+        {'id': 3, 'titulo': 'Prova de Cálculo II',             'tipo': 'prova',    'data': _d(2),  'horario': '14:00', 'local': 'Sala 305',  'descricao': 'Conteúdo: Integrais'},
+        {'id': 4, 'titulo': 'Aula de Engenharia de Software',  'tipo': 'aula',     'data': _d(3),  'horario': '08:00', 'local': 'Lab 2',     'descricao': 'Tema: Design Patterns'},
+        {'id': 5, 'titulo': 'Entrega do Trabalho de IA',       'tipo': 'entrega',  'data': _d(5),  'horario': '23:59', 'local': 'Online',    'descricao': 'JARVIS — Trabalho 2'},
+        {'id': 6, 'titulo': 'Aula de Redes de Computadores',   'tipo': 'aula',     'data': _d(4),  'horario': '10:00', 'local': 'Sala 110',  'descricao': 'Tema: TCP/IP'},
+        {'id': 7, 'titulo': 'Prova de Estrutura de Dados',     'tipo': 'prova',    'data': _d(9),  'horario': '08:00', 'local': 'Sala 101',  'descricao': 'Conteúdo: Árvores e Grafos'},
+    ]
+
+
+def _tarefas_inicial():
+    return [
+        {'id': 1, 'titulo': 'Estudar integrais para a prova', 'descricao': 'Caps 5 e 6',                  'prazo': _d(2),  'concluida': False, 'prioridade': 'alta'},
+        {'id': 2, 'titulo': 'Ler artigo sobre transformers',   'descricao': 'Attention is All You Need',   'prazo': _d(4),  'concluida': False, 'prioridade': 'media'},
+        {'id': 3, 'titulo': 'Implementar RAG do JARVIS',       'descricao': 'Trabalho prático',             'prazo': _d(5),  'concluida': False, 'prioridade': 'alta'},
+        {'id': 4, 'titulo': 'Revisar anotações de BD',         'descricao': 'Foco em normalização',        'prazo': _d(3),  'concluida': False, 'prioridade': 'media'},
+    ]
 
 DOCS = {
     'regressao_logistica.txt': '''# Regressão Logística
@@ -107,10 +117,9 @@ def carregar_json(caminho, padrao=None):
 
 def inicializar():
     Path('data/documentos').mkdir(parents=True, exist_ok=True)
-    if not Path('data/agenda.json').exists():
-        salvar_json('data/agenda.json', AGENDA_INICIAL)
-    if not Path('data/tarefas.json').exists():
-        salvar_json('data/tarefas.json', TAREFAS_INICIAL)
+    # Always regenerate agenda and tarefas with today-relative dates
+    salvar_json('data/agenda.json', _agenda_inicial())
+    salvar_json('data/tarefas.json', _tarefas_inicial())
     for nome, conteudo in DOCS.items():
         p = Path(f'data/documentos/{nome}')
         if not p.exists():

@@ -61,8 +61,24 @@ Estado atual:
 Regras:
 1. Se quiz_ativo=true e o usuario nao pediu explicitamente outra acao, use verificar_resposta_quiz
 2. Para conteudo academico (explicar, o que e, como funciona), use buscar_material_rag
-3. Combine ferramentas quando necessario (ex: "o que devo estudar hoje" combine consultar_agenda + listar_tarefas + consultar_provas_proximas)
+3. Combine ferramentas quando necessario (veja exemplos abaixo)
 4. Use apenas ferramentas relevantes para a mensagem
+
+Exemplos (few-shot):
+Mensagem: "o que devo estudar hoje?"
+{{"ferramentas": [{{"nome": "consultar_agenda", "args": {{"data": "hoje"}}}}, {{"nome": "listar_tarefas", "args": {{}}}}, {{"nome": "consultar_provas_proximas", "args": {{"dias": 7}}}}]}}
+
+Mensagem: "monte um plano de estudos para a prova de redes"
+{{"ferramentas": [{{"nome": "planejar_estudos", "args": {{"materia": "redes de computadores", "dias": 7}}}}]}}
+
+Mensagem: "adiciona tarefa de estudar grafos para sexta"
+{{"ferramentas": [{{"nome": "adicionar_tarefa", "args": {{"titulo": "Estudar grafos", "prioridade": "media"}}}}]}}
+
+Mensagem: "explique backpropagation"
+{{"ferramentas": [{{"nome": "buscar_material_rag", "args": {{"pergunta": "como funciona backpropagation em redes neurais"}}}}]}}
+
+Mensagem: "quais são minhas provas essa semana?"
+{{"ferramentas": [{{"nome": "consultar_provas_proximas", "args": {{"dias": 7}}}}, {{"nome": "consultar_agenda", "args": {{"data": "semana"}}}}]}}
 
 Responda SOMENTE com JSON valido, sem texto adicional:
 {{"ferramentas": [{{"nome": "nome_da_ferramenta", "args": {{"param": "valor"}}}}]}}

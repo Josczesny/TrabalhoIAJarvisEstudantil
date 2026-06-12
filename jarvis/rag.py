@@ -1,3 +1,4 @@
+import re
 import numpy as np
 import faiss
 from pathlib import Path
@@ -5,23 +6,52 @@ from sentence_transformers import SentenceTransformer
 
 from jarvis.config import client, MODEL, logger
 
-CHUNK_SIZE = 200
-CHUNK_OVERLAP = 30
+CHUNK_SIZE = 400
+CHUNK_OVERLAP = 60
 TOP_K = 3
+SCORE_MIN = 0.25  # descarta chunks com similaridade abaixo desse limiar
 
 
 def chunk_texto(texto, tamanho=CHUNK_SIZE, overlap=CHUNK_OVERLAP):
-    chunks, inicio = [], 0
-    while inicio < len(texto):
-        chunk = texto[inicio:inicio + tamanho].strip()
-        if len(chunk) > 30:
-            chunks.append(chunk)
-        inicio += tamanho - overlap
+    """Recursive chunking: tenta preservar parágrafos e frases antes de cortar por char."""
+    separadores = ['\n\n', '\n', '. ', ' ']
+    chunks = _split_recursivo(texto.strip(), tamanho, overlap, separadores)
+    return [c for c in chunks if len(c) > 30]
+
+
+def _split_recursivo(texto, tamanho, overlap, separadores):
+    if len(texto) <= tamanho:
+        return [texto] if texto else []
+    if not separadores:
+        # fallback: corte fixo
+        partes, i = [], 0
+        while i < len(texto):
+            partes.append(texto[i:i + tamanho])
+            i += tamanho - overlap
+        return partes
+
+    sep = separadores[0]
+    segmentos = texto.split(sep)
+    chunks, atual = [], ''
+    for seg in segmentos:
+        candidato = atual + (sep if atual else '') + seg
+        if len(candidato) <= tamanho:
+            atual = candidato
+        else:
+            if atual:
+                chunks.append(atual)
+            if len(seg) > tamanho:
+                chunks.extend(_split_recursivo(seg, tamanho, overlap, separadores[1:]))
+                atual = ''
+            else:
+                atual = seg
+    if atual:
+        chunks.append(atual)
     return chunks
 
 
 class JARVIS_RAG:
-    def __init__(self, modelo='paraphrase-MiniLM-L3-v2'):
+    def __init__(self, modelo='paraphrase-multilingual-MiniLM-L12-v2'):
         self._nome_modelo = modelo
         self.modelo = None
         self.chunks, self.metadados, self.index = [], [], None
@@ -30,6 +60,7 @@ class JARVIS_RAG:
         if self.modelo is None:
             logger.info(f'Carregando modelo de embedding: {self._nome_modelo}')
             self.modelo = SentenceTransformer(self._nome_modelo)
+            faiss.omp_set_num_threads(min(4, __import__('os').cpu_count() or 1))
         return self.modelo
 
     def carregar_documentos(self, pasta='data/documentos'):
@@ -75,7 +106,8 @@ class JARVIS_RAG:
         scores, idx = self.index.search(q_emb, min(k, len(self.chunks)))
         return [
             {'texto': self.chunks[i], 'arquivo': self.metadados[i]['arquivo'], 'score': float(scores[0][j])}
-            for j, i in enumerate(idx[0]) if i >= 0
+            for j, i in enumerate(idx[0])
+            if i >= 0 and float(scores[0][j]) >= SCORE_MIN
         ]
 
     def responder(self, pergunta):

@@ -5,7 +5,7 @@ MODEL = 'google/gemma-3-12b-it'
 
 client = OpenAI(
     base_url='https://llm.liaufms.org/v1/gemma-3-12b-it',
-    api_key='Cxt2ftLF7d3mHS2JdiFqB-eSDAQeZvFATPXPs02lV9A'
+    api_key='REIkURcI7rTTqsTwlJi8MrgnKFwOiqky7Ezh7hH-l-k'
 )
 
 logging.basicConfig(
