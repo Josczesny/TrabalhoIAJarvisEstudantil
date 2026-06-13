@@ -8,13 +8,11 @@ echo.
 python --version >nul 2>&1
 if errorlevel 1 (
     echo ERRO: Python nao encontrado.
-    echo Instale em: https://www.python.org/downloads/
-    echo Marque a opcao "Add Python to PATH" durante a instalacao.
     pause
     exit /b 1
 )
 
-echo Passo 1/3: Criando ambiente virtual...
+echo Passo 1/4: Criando ambiente virtual...
 python -m venv venv
 if errorlevel 1 (
     echo ERRO ao criar ambiente virtual.
@@ -22,16 +20,19 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo Passo 2/3: Instalando PyTorch (pode demorar 5-10 minutos)...
-venv\Scripts\pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cpu --quiet
+echo Passo 2/4: Atualizando pip...
+venv\Scripts\python.exe -m pip install --upgrade pip --quiet
+
+echo Passo 3/4: Instalando PyTorch...
+venv\Scripts\pip install torch --index-url https://download.pytorch.org/whl/cpu --no-cache-dir --quiet
 if errorlevel 1 (
     echo ERRO ao instalar PyTorch.
     pause
     exit /b 1
 )
 
-echo Passo 3/3: Instalando demais dependencias...
-venv\Scripts\pip install flask openai "sentence-transformers==3.3.1" "transformers==4.46.3" faiss-cpu numpy pypdf werkzeug --quiet
+echo Passo 4/4: Instalando demais dependencias...
+venv\Scripts\pip install flask openai sentence-transformers faiss-cpu numpy pypdf werkzeug --no-cache-dir --quiet
 if errorlevel 1 (
     echo ERRO ao instalar dependencias.
     pause
