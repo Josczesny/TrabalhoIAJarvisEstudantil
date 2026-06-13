@@ -16,14 +16,13 @@ if not exist "venv\Scripts\python.exe" (
 echo Carregando modelo de IA...
 echo.
 
-:: Barra de progresso com 20 blocos (~10 segundos)
 set "barra="
 set /a total=20
 set /a delay=500
 
 for /l %%i in (1,1,%total%) do (
     set /a pct=%%i*100/%total%
-    set "barra=!barra!█"
+    set "barra=!barra!#"
     cls
     echo ================================================
     echo  JARVIS Academico - Iniciando...
