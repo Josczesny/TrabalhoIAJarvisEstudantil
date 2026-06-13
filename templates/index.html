@@ -1083,7 +1083,7 @@ function renderTarefas(tarefas) {
   const concluidas = tarefas.filter(t => t.concluida);
 
   const html = [...pendentes, ...concluidas].map(t => `
-    <div class="card ${t.concluida ? 'done' : ''}" onclick="toggleTarefa(${t.id})">
+    <div class="card ${t.concluida ? 'done' : ''}" onclick="toggleTarefa(${t.id}, ${t.concluida})">
       <div class="card-title">${t.concluida ? '[ok] ' : ''}${t.titulo}</div>
       <div class="card-meta">
         <span class="badge badge-${t.concluida ? 'concluida' : t.prioridade}">${t.concluida ? 'feito' : t.prioridade}</span>
@@ -1103,10 +1103,12 @@ function renderDocs(docs) {
     </div>`).join('');
 }
 
-async function toggleTarefa(id) {
+async function toggleTarefa(id, concluida) {
   try {
-    await fetch('/concluir_tarefa', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id}) });
-    toast('Tarefa atualizada!');
+    const rota = concluida ? '/reabrir_tarefa' : '/concluir_tarefa';
+    const msg  = concluida ? 'Tarefa reaberta!'  : 'Tarefa concluída!';
+    await fetch(rota, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id}) });
+    toast(msg);
     carregarDados();
   } catch(e) {}
 }

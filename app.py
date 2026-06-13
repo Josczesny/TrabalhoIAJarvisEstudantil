@@ -7,7 +7,7 @@ import logging
 
 from jarvis.data_init import inicializar, carregar_json
 from jarvis.rag import rag
-from jarvis.tools import adicionar_tarefa, concluir_tarefa, QUIZ_STATE
+from jarvis.tools import adicionar_tarefa, concluir_tarefa, reabrir_tarefa, QUIZ_STATE
 from jarvis.agent import jarvis, HISTORICO
 
 logger = logging.getLogger('JARVIS')
@@ -66,6 +66,13 @@ def listar_documentos():
 def rota_concluir():
     data = request.json
     resultado = concluir_tarefa(data.get('id'))
+    return jsonify({'ok': True, 'resultado': resultado})
+
+
+@app.route('/reabrir_tarefa', methods=['POST'])
+def rota_reabrir():
+    data = request.json
+    resultado = reabrir_tarefa(data.get('id'))
     return jsonify({'ok': True, 'resultado': resultado})
 
 

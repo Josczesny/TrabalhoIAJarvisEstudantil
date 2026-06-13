@@ -107,6 +107,22 @@ def concluir_tarefa(tarefa_id):
     return f'Tarefa #{tarefa_id} não encontrada.'
 
 
+def reabrir_tarefa(tarefa_id):
+    tarefas = carregar_json('data/tarefas.json')
+    try:
+        tarefa_id = int(tarefa_id)
+    except (TypeError, ValueError):
+        return f'ID de tarefa inválido: {tarefa_id}'
+    for t in tarefas:
+        if t['id'] == tarefa_id:
+            if not t['concluida']:
+                return f'Tarefa #{tarefa_id} já está pendente.'
+            t['concluida'] = False
+            salvar_json('data/tarefas.json', tarefas)
+            return f'Tarefa #{tarefa_id} reaberta: {t["titulo"]}'
+    return f'Tarefa #{tarefa_id} não encontrada.'
+
+
 # ── RAG ───────────────────────────────────────────────────────────────
 
 def buscar_material_rag(pergunta):
